@@ -1,0 +1,133 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+html body {
+  width: 100%;
+  height: 100%;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  background-image: url(./Assets/banner.jpg);
+  background-color: rgba(75, 116, 65, 0.658);
+}
+
+.nav_links {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+  font-size: x-large;
+}
+
+.nav_links a{
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.nav_links li{
+  list-style: none;
+}
+
+.title_logo h1{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 24px;
+  color: rgb(48, 49, 48);
+}
+
+.logo {
+  width: 20%;
+  height: 20%;
+}
+
+.burger{
+  display: none;
+}
+
+.burger div{
+  width: 25px;
+  height: 3px;
+  margin: 5px;
+  background-color: black;
+}
+
+#temp_resume{
+  height: 720px;
+  width: auto;
+}
+
+.resume{
+  height: 100%;
+  width: 55%;
+}
+
+@media screen and (max-width:768px){
+  body {
+    overflow-x: hidden;
+  }
+  .nav_links {
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 10vh;
+    background-color: rgba(153, 224, 87, 0.719);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+  .nav_links li{
+    opacity: 0;
+  }
+  .burger{
+    display: block;
+    cursor: pointer;
+  }
+  .resume{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.nav-active{
+  transform: translateX(0);
+}
+
+@keyframes navLinkFade{
+  from{
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.toggle .line1{
+  transform: rotate(-45deg) translate(-5px, 6px);
+  transition: transform 0.5s ease-in;
+}
+
+.toggle .line2{
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.toggle .line3{
+  transform: rotate(45deg) translate(-5px, -6px);
+  transition: transform 0.5s ease-in;
+}
