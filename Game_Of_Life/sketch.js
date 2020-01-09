@@ -89,4 +89,4 @@ function draw(){
 
 }
 
-setup()
+setup();
