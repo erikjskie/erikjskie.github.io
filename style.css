@@ -80,7 +80,7 @@ nav {
     position: absolute;
     right: 0px;
     height: 92vh;
-    top: 10vh;
+    top: 9.75vh;
     background-color: rgba(153, 224, 87, 0.719);
     display: flex;
     flex-direction: column;
@@ -130,4 +130,39 @@ nav {
 .toggle .line3{
   transform: rotate(45deg) translate(-5px, -6px);
   transition: transform 0.5s ease-in;
+}
+
+.projects {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  grid-auto-rows: minmax(500px, auto);
+  background-color: rgba(168, 230, 26, 0.733);
+  justify-content: stretch;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.projects_images img{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1em;
+  height: auto;
+  width: 100%;
+}
+
+.projects_list {
+  display: grid;
+  justify-content: stretch;
+}
+
+.resume {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-auto-rows: minmax(300px, auto);
+  background-color: rgba(168, 230, 26, 0.733);
+  justify-content: stretch;
+}
+
+.contact {
+  font-family: 'Montserrat', sans-serif;
+  background-color: rgba(162, 211, 49, 0.733);
 }
