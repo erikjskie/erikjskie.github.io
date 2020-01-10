@@ -1,5 +1,5 @@
 //Declare Global Variables
-let world;
+let world; //world data
 let worldHeight;
 let worldWidth;
 let worldLength;
@@ -74,7 +74,7 @@ function updateWorld(grid){
 }
 
 //UI Stuff
-function mousePressed(){
+function doubleClicked(){
   if(drawToggle){
     drawToggle = false;
     loop();
@@ -109,8 +109,9 @@ function draw(){
         if(world[i][j][k] == 1){
           push();
           translate(x-width/2, y-height/2, z-width);
-          fill(0);
-          stroke(200);
+          fill(Math.floor(Math.random()*255), 200, Math.floor(Math.random()*255));
+          stroke(0);
+          strokeWeight(3);
           box(resolution);
           pop();
         }

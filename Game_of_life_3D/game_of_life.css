@@ -1,5 +1,11 @@
+*{
+  padding: none;
+  margin: none;
+}
+
 body {
-  background-color: rgba(168, 230, 26, 0.733);
+  background: rgb(62,186,64);
+  background: linear-gradient(90deg, rgba(62,186,64,1) 0%, rgba(255,244,0,1) 100%);
 }
 
 .container {
