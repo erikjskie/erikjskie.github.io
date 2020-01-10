@@ -33,6 +33,14 @@ nav a{
   color: black;
 }
 
+nav a:hover{
+  font-family:'Montserrat', sans-serif;
+  font-weight: bolder;
+  font-size: x-large;
+  text-decoration: none;
+  color: white;
+}
+
 .title_logo h1{
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
