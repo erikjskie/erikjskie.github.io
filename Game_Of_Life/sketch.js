@@ -62,11 +62,10 @@ let rows;
 const resolution = 10;
 
 function setup(){
-  createCanvas(1600, 1200);
+  createCanvas(600, 600);
   cols = width / resolution;
   rows = height / resolution;
   grid = make2DArray(cols, rows);
-  console.table(grid);
 }
 
 function draw(){
@@ -86,7 +85,6 @@ function draw(){
   }
 
   grid = updateGrid(grid);
-
 }
 
 setup();

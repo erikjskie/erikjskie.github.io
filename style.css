@@ -154,6 +154,12 @@ nav {
   justify-content: stretch;
 }
 
+.projects a{
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
 .resume {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;

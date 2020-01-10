@@ -3,7 +3,7 @@ let world;
 let worldHeight;
 let worldWidth;
 let worldLength;
-const resolution = 25;
+const resolution = 30;
 let drawToggle = true;
 
 //Makes game space
@@ -73,6 +73,19 @@ function updateWorld(grid){
   return next;
 }
 
+function emptyWorld(grid){
+  for(let i = 0; i < grid.length; i++){
+    for(let j = 0; j < grid[i].length; j++){
+      for(let k = 0; k < grid[i][j].length; k++){
+        if(grid[i][j][k] == 1){
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+}
+
 //UI Stuff
 function mousePressed(){
   if(drawToggle){
@@ -97,7 +110,7 @@ function setup(){
 
 function draw(){
   background(255);
-  frameRate(1);
+  frameRate(30);
   orbitControl();
   for(let i = 0; i < world.length; i++){
     for(let j = 0; j < world[i].length; j++){
@@ -117,6 +130,9 @@ function draw(){
     }
   }
   world = updateWorld(world);
+  if(emptyWorld(world)){
+    noLoop();
+  }
 }
 
 setup();
