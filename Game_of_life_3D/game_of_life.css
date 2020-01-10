@@ -1,0 +1,51 @@
+body {
+  background-color: rgba(168, 230, 26, 0.733);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  justify-content: stretch;
+  align-items: stretch;
+}
+
+nav {
+  grid-column: 1/-1;
+  background-image: url('../Assets/banner.jpg');
+}
+
+nav ul{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+nav li{
+  list-style: none;
+}
+
+nav a{
+  font-family:'Montserrat', sans-serif;
+  font-weight: bolder;
+  font-size: x-large;
+  text-decoration: none;
+  color: black;
+}
+
+.title_logo h1{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 24px;
+  color: rgb(48, 49, 48);
+}
+
+.logo {
+  width: 5%;
+  height: 5%;
+}
+
+#game {
+  grid-column: 5/8;
+}

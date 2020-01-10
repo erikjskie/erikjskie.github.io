@@ -141,6 +141,12 @@ nav {
   font-family: 'Montserrat', sans-serif;
 }
 
+.projects a{
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
 .projects_images img{
   display: grid;
   grid-template-columns: 1fr;
