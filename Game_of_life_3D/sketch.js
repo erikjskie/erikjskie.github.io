@@ -1,5 +1,5 @@
 //Declare Global Variables
-let world;
+let world; //world data
 let worldHeight;
 let worldWidth;
 let worldLength;
@@ -87,7 +87,7 @@ function emptyWorld(grid){
 }
 
 //UI Stuff
-function mousePressed(){
+function doubleClicked(){
   if(drawToggle){
     drawToggle = false;
     loop();
@@ -99,7 +99,8 @@ function mousePressed(){
 
 //Visualization
 function setup(){
-  createCanvas(600, 600, WEBGL);
+  let canvas = createCanvas(600, 600, WEBGL);
+  canvas.parent('game');
   //Assign values to global variables
   worldHeight = height/resolution;
   worldLength = width/resolution;
@@ -109,8 +110,8 @@ function setup(){
 }
 
 function draw(){
-  background(255);
-  frameRate(30);
+  background(168, 230, 26, 0.733);
+  frameRate(5);
   orbitControl();
   for(let i = 0; i < world.length; i++){
     for(let j = 0; j < world[i].length; j++){
@@ -121,8 +122,9 @@ function draw(){
         if(world[i][j][k] == 1){
           push();
           translate(x-width/2, y-height/2, z-width);
-          fill(0);
-          stroke(100);
+          fill(Math.floor(Math.random()*255), 200, Math.floor(Math.random()*255));
+          stroke(0);
+          strokeWeight(3);
           box(resolution);
           pop();
         }
