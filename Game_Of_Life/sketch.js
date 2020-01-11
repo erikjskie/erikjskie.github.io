@@ -67,7 +67,6 @@ function setup(){
   cols = width / resolution;
   rows = height / resolution;
   grid = make2DArray(cols, rows);
-  console.table(grid);
 }
 
 function draw(){
@@ -87,7 +86,6 @@ function draw(){
   }
 
   grid = updateGrid(grid);
-
 }
 
 setup();

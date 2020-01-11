@@ -63,3 +63,34 @@ nav a:hover{
 #game {
   grid-column: 5/8;
 }
+
+.ui{
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.ui button{
+  box-shadow: 3px 4px 0px 0px #b0c4b1;
+	background:linear-gradient(to bottom, #e8ffed 5%, #c9c9b9 100%);
+	background-color:#e8ffed;
+	border-radius:15px;
+	border:1px solid #bad4c5;
+	display:inline-block;
+	cursor:pointer;
+	color:#5a9c3a;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+
+.ui button:hover {
+  background:linear-gradient(to bottom, #c9c9b9 5%, #e8ffed 100%);
+	background-color:#c9c9b9;
+}
+
+.ui button:active {
+  position:relative;
+	top:1px;
+}
