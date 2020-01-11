@@ -82,16 +82,6 @@ function updateWorld(grid){
 }
 
 //UI Stuff
-function doubleClicked(){
-  if(drawToggle){
-    drawToggle = false;
-    loop();
-  } else{
-    drawToggle = true;
-    noLoop();
-  }
-}
-
 function reset(){
     world = make3DArray(worldHeight, worldLength, worldWidth);
     world = seed3DArray(world);
@@ -106,6 +96,37 @@ function startDraw(){
   } else {
     startButton.innerHTML = "Start";
     noLoop();
+  }
+}
+
+function drawWorld(){
+  for(let i = 0; i < world.length; i++){
+    for(let j = 0; j < world[i].length; j++){
+      for(let k = 0; k < world[i][j].length; k++){
+        let x = i* resolution;
+        let y = j* resolution;
+        let z = k* resolution;
+        if(world[i][j][k][0] == 1){
+          push();
+          translate(x-width/2, y-height/2, z-width);
+          fill(world[i][j][k][1]);
+          stroke(0);
+          strokeWeight(3);
+          box(resolution);
+          pop();
+        }
+      }
+    }
+  }
+}
+
+function renderUpdatedWorld(update){
+  if(update === true){
+    drawWorld();
+    world = updateWorld(world);
+  } else{
+    loop();
+    drawWorld();
   }
 }
 
@@ -126,25 +147,11 @@ function draw(){
   background(168, 230, 26, 0.733);
   frameRate(5);
   orbitControl();
-  for(let i = 0; i < world.length; i++){
-    for(let j = 0; j < world[i].length; j++){
-      for(let k = 0; k < world[i][j].length; k++){
-        let x = i* resolution;
-        let y = j* resolution;
-        let z = k* resolution;
-        if(world[i][j][k][0] == 1){
-          push();
-          translate(x-width/2, y-height/2, z-width);
-          fill(world[i][j][k][1]);
-          stroke(0);
-          strokeWeight(3);
-          box(resolution);
-          pop();
-        }
-      }
-    }
+  if(document.getElementById("start").innerHTML == "Start"){
+    renderUpdatedWorld(false);
+  } else{
+    renderUpdatedWorld(true);
   }
-  world = updateWorld(world);
 }
 
 setup();

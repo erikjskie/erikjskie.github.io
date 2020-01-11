@@ -1,30 +1,42 @@
 *{
-  padding: none;
-  margin: none;
+  padding: 0px;
+  margin: 0px;
+  font-family:'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
 
 body {
-  background: rgb(62,186,64);
-  background: linear-gradient(90deg, rgba(62,186,64,1) 0%, rgba(255,244,0,1) 100%);
+  background-color: #f3ff13;
+  background-image: url("../Assets/Flat-Mountains.svg");
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
+  grid-gap: 20px;
   justify-content: stretch;
   align-items: stretch;
 }
 
 nav {
   grid-column: 1/-1;
-  background-image: url('../Assets/banner.jpg');
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 8vh;
+  background-image: url("../Assets/Randomized-Pattern.svg");
+  background-attachment: fixed;
+  background-size: cover;
+  border-radius: 100px;
 }
 
 nav ul{
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  width: 30%;
 }
 
 nav li{
@@ -32,17 +44,15 @@ nav li{
 }
 
 nav a{
-  font-family:'Montserrat', sans-serif;
-  font-weight: bolder;
-  font-size: x-large;
+  font-weight: bold;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   color: black;
 }
 
 nav a:hover{
-  font-family:'Montserrat', sans-serif;
-  font-weight: bolder;
-  font-size: x-large;
+  font-weight: bold;
   text-decoration: none;
   color: white;
 }
@@ -56,17 +66,44 @@ nav a:hover{
 }
 
 .logo {
-  width: 5%;
-  height: 5%;
+  width: 20%;
+  height: 20%;
 }
 
 #game {
-  grid-column: 5/8;
+  grid-column: 5/5;
+  border-style: groove;
+  border-width: 5px;
+  border-color: #5a9c3a;
+  border-radius: 15px;
+  max-height: 600px;
 }
 
 .ui{
-  grid-column: 1;
+  grid-column: 1/5;
   grid-row: 2;
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 20px;
+  justify-content: center;
+  border-radius: 50px;
+  background-color: #96C52A;
+}
+
+.ui label{
+  float: left;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.ui span{
+  display: block;
+  overflow: hidden;
+  padding: 0 4px 0 6px;
+}
+
+.ui input{
+  width: 100%;
 }
 
 .ui button{
@@ -77,7 +114,7 @@ nav a:hover{
 	border:1px solid #bad4c5;
 	display:inline-block;
 	cursor:pointer;
-	color:#5a9c3a;
+	color:#000000;
 	font-family:Arial;
 	font-size:17px;
 	padding:7px 25px;
@@ -93,4 +130,20 @@ nav a:hover{
 .ui button:active {
   position:relative;
 	top:1px;
+}
+
+.game-information{
+  grid-column: 6/12;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: #2AAA0D;
+  padding: 20px;
+}
+
+.window-rules{
+  grid-column: 5;
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: #178864;
+  padding: 20px;
 }
