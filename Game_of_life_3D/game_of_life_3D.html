@@ -29,19 +29,19 @@
     <button id="start" onclick="startDraw()">Start</button>
     <span>
       <label for="min-neighbors">Minimum Required Neighbors (0-26)</label>
-      <input type="number" name="min-neighbors" id="min-neighbors" min="0" max="26" value="4">
+      <input type="number" name="min-neighbors" id="min-neighbors" min="0" max="26" value="3" onchange="changeMinNeighbors()">
     </span>
     <span>
       <label for="max-neighbors">Maximum Required Neighbors (0-26)</label>
-      <input type="number" name="max-neighbors" id="max-neighbors" min="0" max="26" value="5">
+      <input type="number" name="max-neighbors" id="max-neighbors" min="0" max="26" value="5" onchange="changeMaxNeighbors()">
     </span>
     <span>
       <label for="rep-neighbors">Neighbors Required to Reproduce (0-26)</label>
-      <input type="number" name="rep-neighbors" id="rep-neighbors" min="0" max="26" value="5">
+      <input type="number" name="rep-neighbors" id="rep-neighbors" min="0" max="26" value="5" onchange="changeRepNeighbors()">
     </span>
     <span>
       <label for="seed-density">Seed Density (0-100)</label>
-      <input type="number" name="seed-density" id="seed-density" min="0" max="100" value="30">
+      <input type="number" name="seed-density" id="seed-density" min="0" max="100" value="7" onchange="setSeedDensity()">
     </span>
   </div>
   <div class="game-information">
@@ -55,13 +55,16 @@
     </ul>
     <br>
     <p>
-      Here is a three dimensional implementation of the game of life. Note how compared two the original two dimensional version the number of automata reaching equilibrium are relatively few, if any. This is because a three dimensional cell has 26 neighbors while, a 2D cell has only 8. These additional dimensions increase the complexity of the system, as well as the instability. You can try adjusting the modifiers on the left to achieve greater stability!
+      Here is a three dimensional implementation of the game of life. Note how compared to the original two dimensional version the number of automata reaching equilibrium are relatively few, if any. This is because a three dimensional cell has 26 neighbors while, a 2D cell has only 8. These additional dimensions increase the complexity of the system, as well as the instability. You can try adjusting the modifiers on the left to achieve greater stability!
     </p>
+    <br>
+    <div id="2DGame"><!--Holds 2D Game of Life--></div>
   </div>
   <div class="window-rules">
     <p>Drag your cursor in the window to change the camera position. scroll to change the zoom!</p>
   </div>
   </div>
   <script src="./sketch.js"></script>
+  <script src="./Game_of_Life.js"></script>
 </body>
 </html>

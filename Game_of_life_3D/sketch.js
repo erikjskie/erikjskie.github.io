@@ -5,6 +5,10 @@ let worldWidth;
 let worldLength;
 const resolution = 30;
 let drawToggle = true;
+let minNeighbors = 3; //min number of neighbors to survive
+let maxNeighbors = 5; //max number of neighbors to survive
+let repNeighbors = 5; //number of neighbors necessary to come to life
+let seedDensity = 7;
 
 //Makes game space
 function make3DArray(x, y, z){
@@ -26,10 +30,11 @@ function colorPicker(x, y, z){
 
 //Seeds array with living or dead pixels
 function seed3DArray(grid){
+  const density = seedDensity/200 + 0.5;
   for(let i = 0; i < grid.length; i++){
     for(let j = 0; j < grid[i].length; j++){
       for(let k = 0; k < grid[i][j].length; k++){
-        grid[i][j][k] = [Math.round(Math.random()*0.6), colorPicker(i, j, k)];
+        grid[i][j][k] = [Math.round(Math.random()*density), colorPicker(i, j, k)];
       }
     }
   }
@@ -63,13 +68,13 @@ function updateWorld(grid){
       for(let k = 0; k < world[i][j].length; k++){
         sum = countNeighbors(grid, i, j, k);
         if(grid[i][j][k][0] == 1){ //if alive
-          if(sum < 4 || sum > 5){
+          if(sum < minNeighbors || sum > maxNeighbors){
             next[i][j][k] = [0, colorPicker(i, j, k)];
           } else {
             next[i][j][k] = [1, colorPicker(i, j, k)];
           }
         } else { //if dead
-          if(sum == 5){
+          if(sum == repNeighbors){
             next[i][j][k] = [1, colorPicker(i, j, k)];
           } else {
             next[i][j][k] = [0, colorPicker(i, j, k)];
@@ -128,6 +133,22 @@ function renderUpdatedWorld(update){
     loop();
     drawWorld();
   }
+}
+
+function changeMinNeighbors(){
+  minNeighbors = document.getElementById("min-neighbors").value;
+}
+
+function changeMaxNeighbors(){
+  maxNeighbors = document.getElementById("max-neighbors").value;
+}
+
+function changeRepNeighbors(){
+  repNeighbors = document.getElementById("rep-neighbors").value;
+}
+
+function setSeedDensity(){
+  seedDensity = document.getElementById("seed-density").value;
 }
 
 //Visualization

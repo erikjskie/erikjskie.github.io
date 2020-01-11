@@ -62,8 +62,8 @@ let rows;
 const resolution = 10;
 
 function setup(){
-  let canvas = createCanvas(1600, 1200);
-  canvas.parent('game');
+  let canvas = createCanvas(100, 100);
+  canvas.parent('2DGame');
   cols = width / resolution;
   rows = height / resolution;
   grid = make2DArray(cols, rows);

@@ -3,6 +3,7 @@
   margin: 0px;
   font-family:'Montserrat', sans-serif;
   box-sizing: border-box;
+  font-size: 20px;
 }
 
 body {
@@ -75,19 +76,21 @@ nav a:hover{
   border-style: groove;
   border-width: 5px;
   border-color: #5a9c3a;
-  border-radius: 15px;
+  border-radius: 50px;
   max-height: 600px;
 }
 
 .ui{
   grid-column: 1/5;
-  grid-row: 2;
+  grid-row: 2/4;
   display: grid;
   grid-template-rows: auto;
   grid-row-gap: 20px;
   justify-content: center;
   border-radius: 50px;
+  background: linear-gradient(to bottom, #ADFF7A, 70%, #6EA44C 100%);
   background-color: #96C52A;
+  padding: 20px;
 }
 
 .ui label{
@@ -114,9 +117,8 @@ nav a:hover{
 	border:1px solid #bad4c5;
 	display:inline-block;
 	cursor:pointer;
-	color:#000000;
-	font-family:Arial;
-	font-size:17px;
+  color:#000000;
+  font-weight: bold;
 	padding:7px 25px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #e1e2ed;
@@ -133,17 +135,19 @@ nav a:hover{
 }
 
 .game-information{
-  grid-column: 6/12;
+  grid-column: 6/-1;
+  grid-row: 2/4;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 50px;
+  background: linear-gradient(to bottom, #ADFF7A, 70%, #6EA44C 100%);
   background-color: #2AAA0D;
-  padding: 20px;
+  padding: 25px;
 }
 
 .window-rules{
   grid-column: 5;
   font-weight: bold;
-  border-radius: 10px;
-  background-color: #178864;
+  border-radius: 50px;
+  background: linear-gradient(to bottom, #ADFF7A, 70%, #6EA44C 100%);
   padding: 20px;
 }
