@@ -204,3 +204,79 @@ input[type=number]::-webkit-outer-spin-button {
     width: 60%;
   }
 }
+
+@keyframes navLinkColorChange{
+  from{
+    opacity: 0.9;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+@keyframes navLinkFade{
+  from{
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+.burger{
+  display: none;
+}
+
+.burger div{
+  width: 25px;
+  height: 3px;
+  margin: 5px;
+  background-color: black;
+}
+
+@media screen and (max-width:768px){
+  body {
+    overflow-x: hidden;
+  }
+  .nav_links {
+    position: absolute;
+    right: 0px;
+    height: 92vh;
+    top: 9.75vh;
+    background-color: rgba(153, 224, 87, 0.719);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in;
+  }
+  .nav_links li{
+    opacity: 0;
+  }
+  .burger{
+    display: block;
+    cursor: pointer;
+  }
+}
+
+.nav-active{
+  transform: translateX(0);
+}
+
+.toggle .line1{
+  transform: rotate(-45deg) translate(-5px, 6px);
+  transition: transform 0.5s ease-in;
+}
+
+.toggle .line2{
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+.toggle .line3{
+  transform: rotate(45deg) translate(-5px, -6px);
+  transition: transform 0.5s ease-in;
+}
