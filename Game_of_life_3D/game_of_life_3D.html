@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/addons/p5.dom.js"></script>
+  <script src="../p5.js"></script>
   <link rel="stylesheet" type="text/css" href="./game_of_life.css">
   <title>Game of Life 3D</title>
 </head>
@@ -27,6 +26,41 @@
   <div class="ui">
     <button id="reset-button" onclick="reset()">Reset</button>
     <button id="start" onclick="startDraw()">Start</button>
+    <span>
+      <label for="min-neighbors">Minimum Required Neighbors (0-26)</label>
+      <input type="number" name="min-neighbors" id="min-neighbors" min="0" max="26" value="3" onchange="changeMinNeighbors()">
+    </span>
+    <span>
+      <label for="max-neighbors">Maximum Required Neighbors (0-26)</label>
+      <input type="number" name="max-neighbors" id="max-neighbors" min="0" max="26" value="5" onchange="changeMaxNeighbors()">
+    </span>
+    <span>
+      <label for="rep-neighbors">Neighbors Required to Reproduce (0-26)</label>
+      <input type="number" name="rep-neighbors" id="rep-neighbors" min="0" max="26" value="5" onchange="changeRepNeighbors()">
+    </span>
+    <span>
+      <label for="seed-density">Seed Density (0-100)</label>
+      <input type="number" name="seed-density" id="seed-density" min="0" max="100" value="7" onchange="setSeedDensity()">
+    </span>
+  </div>
+  <div class="game-information">
+    <p>The Game of Life, originally developed by John Conway, intended to explore cellular automata that functioned on a minimal ruleset without explosive growth or decay, capable of supporting heritable mutation. His original 2 dimensional design had three rules
+    </p>
+    <br>
+    <ul>
+        <li>A cell with less than two neighbors dies, as if by underpopulation</li>
+        <li>A cell with greater than three neighbors dies, as if by overpopulation</li>
+        <li>A dead cell with exactly three neighbors is brought to life, as if by reproduction</li>
+    </ul>
+    <br>
+    <p>
+      Here is a three dimensional implementation of the game of life. Compared to the original two dimensional version the number of automata reaching equilibrium are relatively few, if any. This is because a three dimensional cell has 26 neighbors while, a 2D cell has only 8. These additional dimensions increase the complexity of the system, as well as the instability. You can try adjusting the modifiers on the left to achieve greater stability!
+    </p>
+    <br>
+    <div id="2DGame"><!--Holds 2D Game of Life--></div>
+  </div>
+  <div class="window-rules" id="window-rules">
+    <p>Drag your cursor in the window to change the camera position. scroll to change the zoom!</p>
   </div>
   </div>
   <script src="./sketch.js"></script>
