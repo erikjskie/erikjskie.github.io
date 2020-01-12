@@ -1,10 +1,11 @@
 //Declare Global Variables
+//gameP5 = new p5();
 let world; //world data
 let worldHeight;
 let worldWidth;
 let worldLength;
-const resolution = 30;
 let drawToggle = true;
+const resolution = Math.floor(document.getElementById("game").clientWidth*((1/document.getElementById("game").clientWidth)*80));
 let minNeighbors = 3; //min number of neighbors to survive
 let maxNeighbors = 5; //max number of neighbors to survive
 let repNeighbors = 5; //number of neighbors necessary to come to life
@@ -116,7 +117,7 @@ function drawWorld(){
           translate(x-width/2, y-height/2, z-width);
           fill(world[i][j][k][1]);
           stroke(0);
-          strokeWeight(3);
+          strokeWeight(2);
           box(resolution);
           pop();
         }
@@ -132,6 +133,7 @@ function renderUpdatedWorld(update){
   } else{
     loop();
     drawWorld();
+    frameRate(30);
   }
 }
 
@@ -151,14 +153,20 @@ function setSeedDensity(){
   seedDensity = document.getElementById("seed-density").value;
 }
 
+//responsiveness
+
+window.onresize = () => {
+  document.location.reload();
+}
+
 //Visualization
 function setup(){
-  let canvas = createCanvas(600, 600, WEBGL);
+  let canvas = createCanvas(document.getElementById("game").clientWidth, document.getElementById("game").scrollHeight, WEBGL);
   canvas.parent('game');
   //Assign values to global variables
-  worldHeight = height/resolution;
-  worldLength = width/resolution;
-  worldWidth  = width/resolution;
+  worldHeight = Math.floor(width/resolution);
+  worldLength = Math.floor(height/resolution);
+  worldWidth  = Math.floor(width/resolution);
   world = make3DArray(worldHeight, worldLength, worldWidth);
   world = seed3DArray(world);
   noLoop();
@@ -175,4 +183,7 @@ function draw(){
   }
 }
 
-setup();
+window.onload = () => {
+  setup();
+  document.getElementById("game").style.alignSelf = "start";
+}

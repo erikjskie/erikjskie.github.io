@@ -11,19 +11,24 @@ body {
   background-image: url("../Assets/Flat-Mountains.svg");
   background-attachment: fixed;
   background-size: cover;
+  height: 100vh;
+  width: auto;
 }
 
 .container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr, 30fr, 1fr;
   grid-gap: 20px;
-  justify-content: stretch;
-  align-items: stretch;
+  align-self: start;
+  align-items: start;
+  height: 100vh;
+  width: 99%;
 }
 
 nav {
   grid-column: 1/-1;
+  grid-row: 1;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -45,17 +50,18 @@ nav li{
 }
 
 nav a{
-  font-weight: bold;
+  font-size: 22px;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
   color: black;
 }
 
 nav a:hover{
-  font-weight: bold;
   text-decoration: none;
-  color: white;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: rgb(164, 177, 149);
 }
 
 .title_logo h1{
@@ -72,24 +78,26 @@ nav a:hover{
 }
 
 #game {
-  grid-column: 5/5;
-  border-style: groove;
-  border-width: 5px;
+  grid-column: 2/4;
+  grid-row: 3/30;
+  border-style: inset;
+  border-width: 2px;
+  border-radius: 10px;
   border-color: #5a9c3a;
-  border-radius: 50px;
-  max-height: 600px;
+  box-shadow: 3px 4px 0px 0px linear-gradient(to bottom,rgba(173, 255, 122, 1), 70%, rgba(110, 164, 76, 1) 100%);
+  align-self: stretch;
 }
 
 .ui{
-  grid-column: 1/5;
-  grid-row: 2/4;
+  grid-column: 1;
+  grid-row: 3/5;
   display: grid;
   grid-template-rows: auto;
   grid-row-gap: 20px;
   justify-content: center;
   border-radius: 50px;
-  background: linear-gradient(to bottom, #ADFF7A, 70%, #6EA44C 100%);
-  background-color: #96C52A;
+  background: linear-gradient(to bottom, rgba(173, 255, 122, 0.7), 70%, rgba(110, 164, 76, 0.8) 100%);
+  background-color: transparent;
   padding: 20px;
 }
 
@@ -110,11 +118,10 @@ nav a:hover{
 }
 
 .ui button{
-  box-shadow: 3px 4px 0px 0px #b0c4b1;
-	background:linear-gradient(to bottom, #e8ffed 5%, #c9c9b9 100%);
-	background-color:#e8ffed;
+  box-shadow: 3px 4px 0px 0px #6EA44C;
+  background-color: transparent;
 	border-radius:15px;
-	border:1px solid #bad4c5;
+	border:2px solid #6EA44C;
 	display:inline-block;
 	cursor:pointer;
   color:#000000;
@@ -131,23 +138,69 @@ nav a:hover{
 
 .ui button:active {
   position:relative;
+  outline: none;
 	top:1px;
 }
 
+.ui input[type=number]{
+  border: 0;
+  border-bottom: 3px solid #6EA44C;
+  background: transparent;
+}
+
+input:focus{
+  outline: none;
+}
+
+button:focus, input[type="button"]:focus {
+  outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+}
+
 .game-information{
-  grid-column: 6/-1;
-  grid-row: 2/4;
-  font-weight: bold;
+  grid-column: 1;
+  grid-row: 5/8;
   border-radius: 50px;
-  background: linear-gradient(to bottom, #ADFF7A, 70%, #6EA44C 100%);
-  background-color: #2AAA0D;
+  background: linear-gradient(to bottom, rgba(173, 255, 122, 0.7), 70%, rgba(110, 164, 76, .8) 100%);
+  background-color: transparent;
   padding: 25px;
 }
 
 .window-rules{
-  grid-column: 5;
+  grid-column: 1;
+  grid-row: 8/31;
   font-weight: bold;
   border-radius: 50px;
-  background: linear-gradient(to bottom, #ADFF7A, 70%, #6EA44C 100%);
+  background: linear-gradient(to bottom, rgba(173, 255, 122, 0.7), 70%, rgba(110, 164, 76, .8) 100%);
+  background-color: transparent;
   padding: 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 1650px){
+  #game{
+    grid-row: 3/27;
+    grid-column: 1/-1;
+  }
+  .ui{
+    grid-row: 27/28;
+    grid-column: 1/-1;
+  }
+  .game-information{
+    grid-row: 28/29;
+    grid-column: 1/-1;
+  }
+  .window-rules{
+    grid-row: 29/31;
+    grid-column: 1/-1;
+  }
+  nav ul{
+    width: 60%;
+  }
 }
