@@ -45,12 +45,6 @@ class Board{
     //sets start and end position
     this.board[this.start[0]][this.start[1]] = new Cell("start");
     this.board[this.end[0]][this.end[1]] = new Cell("end");
-
-    // console.log('rows: ' + this.rows);
-    // console.log('cols: ' + this.cols);
-    // console.log('start: ' + this.start);
-    // console.log('end: ' + this.end);
-    // console.table(this.board);
   }
   checkNotBorderOrWall(cellPosition){ //checks if a cell in the board is out of the bounds of the array,input is an [x, y] array
     if(cellPosition[0] >= 0 && cellPosition[0] < this.rows && cellPosition[1] >= 0 && cellPosition[1] < this.cols && this.board[cellPosition[0]][cellPosition[1]].state !== "wall"){

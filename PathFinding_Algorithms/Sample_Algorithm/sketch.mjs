@@ -25,6 +25,8 @@ const s = ( sketch ) => {
           }
         }
       }
+      //pathArray.shift(); //removes the element from the list being checked
+      //i -= 1;
     }
   }
   
@@ -61,7 +63,7 @@ const s = ( sketch ) => {
           sketch.fill(0,255,0);
           sketch.rect(x, y, resolution, resolution);
         } else if(board.board[i][j].path !== null){
-          sketch.fill(255%(board.board[i][j].path*15), 255%(board.board[i][j].path*15), 255%(board.board[i][j].path*15));
+          sketch.fill(100, 255%(board.board[i][j].path*resolution), 0);
           sketch.rect(x, y, resolution, resolution);
         }
       }
