@@ -50,12 +50,12 @@ a:hover{
   transform: translate(-50%, -50%);
 }
 
-.contacts{
+.packages{
   position: absolute;
   transform: translate(-50%, -50%);
 }
 
-.contacts p{
+.packages p{
   font-weight: bold;
   color: rgb(106,153,237);
 }
