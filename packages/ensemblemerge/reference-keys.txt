@@ -1,0 +1,12 @@
+package-information
+description
+quick-start-guide
+prerequisites
+merge-example-vignettes
+processing-data-without-merging-batches
+merging-with-seurat
+functions
+setparams
+merge
+classes
+uncorrectedparams
