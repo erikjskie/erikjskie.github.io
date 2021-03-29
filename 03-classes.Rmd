@@ -1,0 +1,36 @@
+# classes
+
+## UncorrectedParams
+
+Class generated from `setParams(method = "Uncorrected")` for normalizing and scaling data without batch correction.
+
+```{r eval=FALSE}
+UncorrectedParams(batch = "batch",
+          dimreduc_names = c("PCA" = "pca",
+                            "UMAP" = "umap",
+                            "tSNE" = "tsne"),
+          npcs = 20, 
+          norm_data = TRUE,
+          scaling = TRUE,
+          regressUMI = FALSE,
+          min_cells = 10,
+          min_genes = 300,
+          norm_method = "LogNormalize",
+          scale_factor = 10000,
+          numHVG = 2000)
+```
+
+**Class Structure**
+
+| **Slot** | **Description** |
+| --- | --- |
+| **batch** | metadata name specifying the batches |
+| **dimreduc_names** | Names of the dimension reduction objects to return |
+| **npcs** | Number of PCA dimensions to return in PCA reduction |
+| **scaling** | boolean specifying whether scaling should be performed |
+| **regressUMI** | boolean specifying whether the number of UMI should be regressed |
+| **norm_method** | character specifying what normalization method to use |
+| **min_cells** | minimum number of cells expressing a gene to keep for downstream analysis |
+| **min_genes** | minimum number of genes a cell must express to keep for downstream analysis |
+| **scale_factor** | Number to scale gene expression to |
+| **numHVG** | Top N number of genes to assign as highly variable |

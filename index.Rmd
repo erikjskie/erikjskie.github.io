@@ -1,0 +1,73 @@
+--- 
+title: "ensemblemerge package documentation"
+author: "Erik Skie"
+date: "2021-03-29"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography:
+- book.bib
+- packages.bib
+biblio-style: apalike
+link-citations: yes
+description: This is a reference for the ensemblemerge package for scRNAseq integration.
+---
+
+# Package Information
+
+## Description
+
+**ensemblemerge** is a package that implements a common work flow for several single cell RNA sequence integration methods including Seurat V3, Scanorama, Harmony, Liger, and bbknn. The merging process is designed to be as streamlined as possible for the user, only requiring a `SummarizedExperiment` or `SingleCellExperiment` object and a specification of which method should be used to integrate in `setParams()`.
+
+### Quick Start Guide
+
+Once **ensemblemerge** is installed, merging batches can be performed by the following:
+
+```{r eval=FALSE}
+library(ensemblemerge)
+
+data #some SingleCellExperiment or SummarizedExperiment object with batches to be integrated
+
+params = setParams() #different integration methods can be selected by setting method = c("Seurat", "Harmony", "Liger", "Scanorama", "BBKNN")
+
+merged_data = Merge(params, data)
+```
+
+A `SingleCellExperiment` object is returned in `merged_data` with accompanying dimension reductions if applicable for the integration methods.
+
+## Prerequisites
+
+The following R packages are required for installation of **ensemblemerge**.
+
+```{r eval=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install(c("SingleCellExperiment", "SummarizedExperiment", "LoomExperiment"))
+install.packages("Seurat")
+devtools::install_github('theislab/kBET')
+devtools::install_github('satijalab/seurat-wrappers')
+devtools::install_github("cellgeni/sceasy")
+```
+
+If you would like to use the python based integration methods, the following packages must also be installed in your python environment. If you do not have a python environment set, users can also call ```ensemblemerge::install_python_packages()``` which will install the python prerequisites into a reticulated python environment.
+
+```{python eval=FALSE}
+pip3 install scanpy
+pip3 install bbknn
+pip3 install scanorama
+```
+
+The **ensemblemerge** package can be installed from CRAN or Github (*package is currently in alpha and only available on github to collaborators*):
+
+```{r eval=FALSE}
+install.packages("ensemblemerge")
+# or the development version
+# devtools::install_github("erikjskie/ensemblemerge")
+```
+
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'ensemblemerge', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
