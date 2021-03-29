@@ -45,27 +45,6 @@
             "type": "book"
         },
         {
-            "URL": "https://github.com/rstudio/bookdown",
-            "author": [
-                {
-                    "family": "Xie",
-                    "given": "Yihui"
-                }
-            ],
-            "id": "R-bookdown",
-            "issued": {
-                "date-parts": [
-                    [
-                        2020
-                    ]
-                ]
-            },
-            "note": "R package version 0.21",
-            "title": "Bookdown: Authoring books and technical documents with r markdown",
-            "title-short": "Bookdown",
-            "type": "book"
-        },
-        {
             "URL": "https://yihui.org/knitr/",
             "author": [
                 {
@@ -141,29 +120,6 @@
             "note": "R package version 2.7",
             "title": "Rmarkdown: Dynamic documents for r",
             "title-short": "Rmarkdown",
-            "type": "book"
-        },
-        {
-            "URL": "https://github.com/rstudio/bookdown",
-            "author": [
-                {
-                    "family": "Xie",
-                    "given": "Yihui"
-                }
-            ],
-            "id": "bookdown2016",
-            "issued": {
-                "date-parts": [
-                    [
-                        2016
-                    ]
-                ]
-            },
-            "note": "ISBN 978-1138700109",
-            "publisher": "Chapman; Hall/CRC",
-            "publisher-place": "Boca Raton, Florida",
-            "title": "Bookdown: Authoring books and technical documents with R markdown",
-            "title-short": "Bookdown",
             "type": "book"
         },
         {
