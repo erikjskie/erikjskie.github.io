@@ -4,35 +4,35 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 functions | ensemblemerge package documentation</title>
-  <meta name="description" content="This is a reference for the ensemblemerge package for scRNAseq integration." />
+  <title>Chapter 5 Applications | A Minimal Book Example</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 functions | ensemblemerge package documentation" />
+  <meta property="og:title" content="Chapter 5 Applications | A Minimal Book Example" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is a reference for the ensemblemerge package for scRNAseq integration." />
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 functions | ensemblemerge package documentation" />
+  <meta name="twitter:title" content="Chapter 5 Applications | A Minimal Book Example" />
   
-  <meta name="twitter:description" content="This is a reference for the ensemblemerge package for scRNAseq integration." />
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
 
-<meta name="author" content="Erik Skie" />
+<meta name="author" content="Yihui Xie" />
 
 
-<meta name="date" content="2021-03-29" />
+<meta name="date" content="2021-03-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="merge-example-vignettes.html"/>
-<link rel="next" href="classes.html"/>
+<link rel="prev" href="methods.html"/>
+<link rel="next" href="final-words.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -131,32 +131,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">ensemblemerge</a></li>
+<li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Package Information</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
+<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#description"><i class="fa fa-check"></i><b>1.1</b> Description</a>
-<ul>
-<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#quick-start-guide"><i class="fa fa-check"></i><b>1.1.1</b> Quick Start Guide</a></li>
+<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html"><i class="fa fa-check"></i><b>2</b> Merge example vignettes</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#processing-data-without-merging-batches"><i class="fa fa-check"></i><b>2.1</b> Processing data without merging batches</a></li>
-<li class="chapter" data-level="2.2" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#merging-with-seurat"><i class="fa fa-check"></i><b>2.2</b> Merging with Seurat</a></li>
-<li class="chapter" data-level="2.3" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#merging-with-bbknn"><i class="fa fa-check"></i><b>2.3</b> Merging with bbknn</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3</b> functions</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="functions.html"><a href="functions.html#setparams"><i class="fa fa-check"></i><b>3.1</b> setParams()</a></li>
-<li class="chapter" data-level="3.2" data-path="functions.html"><a href="functions.html#merge"><i class="fa fa-check"></i><b>3.2</b> Merge()</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="classes.html"><a href="classes.html"><i class="fa fa-check"></i><b>4</b> classes</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="classes.html"><a href="classes.html#uncorrectedparams"><i class="fa fa-check"></i><b>4.1</b> UncorrectedParams</a></li>
-</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -170,7 +157,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ensemblemerge package documentation</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
           </h1>
         </div>
 
@@ -178,63 +165,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="functions" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> functions</h1>
-<div id="setparams" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> setParams()</h2>
-<p><code>setParams()</code> generates a <code>Params</code> object of class specified by the <code>method</code> argument, i.e. <code>method = "Seurat"</code> returns a <code>SeuratParams</code> object. The slots of the object can be modified on calling <code>setParams()</code> by passing in the name of the slot and the value into the function. i.e <code>batch = "batch"</code></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="functions.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setParams</span>(<span class="at">method =</span> <span class="st">&quot;Seurat&quot;</span>, ...)</span></code></pre></div>
-<p><strong>Arguments</strong></p>
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Argument</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>method</strong></td>
-<td>character vector specifying the integration method, currently the following methods are available <code>c("Seurat", "Harmony", "Liger", "Scanorama", "BBKNN")</code></td>
-</tr>
-<tr class="even">
-<td><strong>…</strong></td>
-<td>additional arguments that modify the slots of the <code>Params</code> object specified by the <code>methods</code> argument</td>
-</tr>
-</tbody>
-</table>
+<div id="applications" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Applications</h1>
+<p>Some <em>significant</em> applications are demonstrated in this chapter.</p>
+<div id="example-one" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Example one</h2>
 </div>
-<div id="merge" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Merge()</h2>
-<p><code>Merge()</code> generates a <code>SingleCellExperiment</code> object that has been batch integrated by the method specified in the <code>params</code> object.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="functions.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Merge</span>(params, data)</span></code></pre></div>
-<p><strong>Arguments</strong></p>
-<table>
-<colgroup>
-<col width="50%" />
-<col width="50%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Argument</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>params</strong></td>
-<td>A <code>params</code> object generated by the <code>setParams</code> function</td>
-</tr>
-<tr class="even">
-<td><strong>data</strong></td>
-<td>A <code>SummarizedExperiment</code> or <code>SingleCellExperiment</code> object with a metadata identifying the batches</td>
-</tr>
-</tbody>
-</table>
+<div id="example-two" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Example two</h2>
 
 </div>
 </div>
@@ -243,8 +181,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="merge-example-vignettes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="classes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -294,6 +232,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
