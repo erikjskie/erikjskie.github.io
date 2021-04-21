@@ -1,3 +1,8 @@
+fig:unnamed-chunk-9
+fig:unnamed-chunk-13
+fig:unnamed-chunk-18
+fig:unnamed-chunk-22
+fig:unnamed-chunk-26
 package-information
 description
 quick-start-guide
@@ -5,6 +10,7 @@ prerequisites
 merge-example-vignettes
 processing-data-without-merging-batches
 merging-with-seurat
+merging-with-bbknn
 functions
 setparams
 merge

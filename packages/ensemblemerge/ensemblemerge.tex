@@ -297,6 +297,160 @@ Visualize the UMAP (\emph{including the uncorrected data for reference}).
 \caption{Seurat V3 corrected UMAP of single cell data by batch and cell type}\label{fig:unnamed-chunk-13}
 \end{figure}
 
+\hypertarget{merging-with-bbknn}{%
+\section{Merging with bbknn}\label{merging-with-bbknn}}
+
+This workflow is for integrating batches with the \href{'https://github.com/Teichlab/bbknn'}{bbknn} batch correction method.
+
+To take full advantage of all available features of bbknn integration, install the following packages.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{remotes}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"rstudio/reticulate"}\NormalTok{) }\CommentTok{\#increases available memory}
+\FunctionTok{system}\NormalTok{(}\StringTok{"pip3 install pynndescent"}\NormalTok{) }\CommentTok{\#optimizes dimension reduction}
+\FunctionTok{system}\NormalTok{(}\StringTok{"pip3 install leidenalg"}\NormalTok{) }\CommentTok{\#optional clustering algorithm that improves bbknn performance}
+\end{Highlighting}
+\end{Shaded}
+
+Perform default bbknn integration.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ensemblemerge)}
+
+\NormalTok{params }\OtherTok{=} \FunctionTok{setParams}\NormalTok{(}\AttributeTok{method =} \StringTok{"BBKNN"}\NormalTok{, }\AttributeTok{batch =} \StringTok{"batchlb"}\NormalTok{, }\AttributeTok{return =} \StringTok{"Seurat"}\NormalTok{) }\CommentTok{\#any additional processing argument can be added here, see chapter 3: classes}
+
+\NormalTok{bbknn\_integrate }\OtherTok{=} \FunctionTok{Merge}\NormalTok{(params, dendrites)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{bbknn\_integrate} contains normalized and scaled read counts and a \emph{bbknn} neighbor graph. generating a UMAP reduction can be done by the following
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bbknn\_integrate }\OtherTok{\textless{}{-}} \FunctionTok{RunUMAP}\NormalTok{(bbknn\_integrate, }\AttributeTok{nn.name =} \StringTok{"bbknn"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Visualize the UMAP (\emph{including the uncorrected data for reference}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Idents}\NormalTok{(uncorrected) }\OtherTok{=} \StringTok{"batchlb"}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(uncorrected, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Uncorrected Batch"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(uncorrected) }\OtherTok{=} \StringTok{"CellType"}
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(uncorrected, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Uncorrected Cell Type"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(bbknn\_integrate) }\OtherTok{=} \StringTok{"batchlb"}
+\NormalTok{p3 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(bbknn\_integrate, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Corrected Batch"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(bbknn\_integrate) }\OtherTok{=} \StringTok{"CellType"}
+\NormalTok{p4 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(bbknn\_integrate, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Corrected Cell Type"}\NormalTok{)}
+\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{+}\NormalTok{ p4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=33.33in,height=0.8\textheight]{_book/ensemblemerge_files/images/bbknn_default} 
+
+}
+
+\caption{bbknn corrected UMAP of single cell data by batch and cell type}\label{fig:unnamed-chunk-18}
+\end{figure}
+
+By default, bbknn integration uses \href{https://science.sciencemag.org/content/367/6480/eaay3224.abstract}{ridge regression}, which can improve integration by combining both biological and technical effects. This step can be removed by
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ensemblemerge)}
+
+\NormalTok{params }\OtherTok{=} \FunctionTok{setParams}\NormalTok{(}\AttributeTok{method =} \StringTok{"BBKNN"}\NormalTok{, }\AttributeTok{batch =} \StringTok{"batchlb"}\NormalTok{, }\AttributeTok{ridge\_regress =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#any additional processing argument can be added here, see chapter 3: classes}
+
+\NormalTok{bbknn\_integrate }\OtherTok{=} \FunctionTok{Merge}\NormalTok{(params, dendrites)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{bbknn\_integrate} contains normalized and scaled read counts and a \emph{bbknn} neighbor graph. generating a UMAP reduction can be done by the following
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bbknn\_integrate }\OtherTok{\textless{}{-}} \FunctionTok{RunUMAP}\NormalTok{(bbknn\_integrate, }\AttributeTok{nn.name =} \StringTok{"bbknn"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Visualize the UMAP (\emph{including the uncorrected data for reference}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Idents}\NormalTok{(uncorrected) }\OtherTok{=} \StringTok{"batchlb"}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(uncorrected, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Uncorrected Batch"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(uncorrected) }\OtherTok{=} \StringTok{"CellType"}
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(uncorrected, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Uncorrected Cell Type"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(bbknn\_integrate) }\OtherTok{=} \StringTok{"batchlb"}
+\NormalTok{p3 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(bbknn\_integrate, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Corrected Batch"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(bbknn\_integrate) }\OtherTok{=} \StringTok{"CellType"}
+\NormalTok{p4 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(bbknn\_integrate, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Corrected Cell Type"}\NormalTok{)}
+\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{+}\NormalTok{ p4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=33.33in,height=0.8\textheight]{_book/ensemblemerge_files/images/bbknn_ridge_regress_false} 
+
+}
+
+\caption{bbknn without ridge regression corrected UMAP of single cell data by batch and cell type}\label{fig:unnamed-chunk-22}
+\end{figure}
+
+which can improve performance.
+
+If you have additional cell data you would like to support the integration (i.e.~cell type), you can add that by the following
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ensemblemerge)}
+
+\NormalTok{params }\OtherTok{=} \FunctionTok{setParams}\NormalTok{(}\AttributeTok{method =} \StringTok{"BBKNN"}\NormalTok{, }\AttributeTok{batch =} \StringTok{"batchlb"}\NormalTok{, }\AttributeTok{confounder\_key =} \StringTok{"CellType"}\NormalTok{) }\CommentTok{\#any additional processing argument can be added here, see chapter 3: classes}
+
+\NormalTok{bbknn\_integrate }\OtherTok{=} \FunctionTok{Merge}\NormalTok{(params, dendrites)}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{bbknn\_integrate} contains normalized and scaled read counts and a \emph{bbknn} neighbor graph. generating a UMAP reduction can be done by the following
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{bbknn\_integrate }\OtherTok{\textless{}{-}} \FunctionTok{RunUMAP}\NormalTok{(bbknn\_integrate, }\AttributeTok{nn.name =} \StringTok{"bbknn"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Visualize the UMAP (\emph{including the uncorrected data for reference}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Idents}\NormalTok{(uncorrected) }\OtherTok{=} \StringTok{"batchlb"}
+\NormalTok{p1 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(uncorrected, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Uncorrected Batch"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(uncorrected) }\OtherTok{=} \StringTok{"CellType"}
+\NormalTok{p2 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(uncorrected, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Uncorrected Cell Type"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(bbknn\_integrate) }\OtherTok{=} \StringTok{"batchlb"}
+\NormalTok{p3 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(bbknn\_integrate, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Corrected Batch"}\NormalTok{)}
+\FunctionTok{Idents}\NormalTok{(bbknn\_integrate) }\OtherTok{=} \StringTok{"CellType"}
+\NormalTok{p4 }\OtherTok{\textless{}{-}} \FunctionTok{DimPlot}\NormalTok{(bbknn\_integrate, }\AttributeTok{reduction =} \StringTok{"umap"}\NormalTok{, }\AttributeTok{pt.size =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{shuffle =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}\NormalTok{ ggplot2}\SpecialCharTok{::}\FunctionTok{ggtitle}\NormalTok{(}\AttributeTok{label =} \StringTok{"Corrected Cell Type"}\NormalTok{)}
+\NormalTok{p1 }\SpecialCharTok{+}\NormalTok{ p2 }\SpecialCharTok{+}\NormalTok{ p3 }\SpecialCharTok{+}\NormalTok{ p4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=33.33in,height=0.8\textheight]{_book/ensemblemerge_files/images/bbknn_cell_type_confound} 
+
+}
+
+\caption{bbknn with cell type confound corrected UMAP of single cell data by batch and cell type}\label{fig:unnamed-chunk-26}
+\end{figure}
+
+which can improve the quality of integration.
+
 \hypertarget{functions}{%
 \chapter{functions}\label{functions}}
 

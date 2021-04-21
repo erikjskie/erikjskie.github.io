@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#processing-data-without-merging-batches"><i class="fa fa-check"></i><b>2.1</b> Processing data without merging batches</a></li>
 <li class="chapter" data-level="2.2" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#merging-with-seurat"><i class="fa fa-check"></i><b>2.2</b> Merging with Seurat</a></li>
+<li class="chapter" data-level="2.3" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#merging-with-bbknn"><i class="fa fa-check"></i><b>2.3</b> Merging with bbknn</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3</b> functions</a>
 <ul>
@@ -182,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="setparams" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> setParams()</h2>
 <p><code>setParams()</code> generates a <code>Params</code> object of class specified by the <code>method</code> argument, i.e. <code>method = "Seurat"</code> returns a <code>SeuratParams</code> object. The slots of the object can be modified on calling <code>setParams()</code> by passing in the name of the slot and the value into the function. i.e <code>batch = "batch"</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="functions.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setParams</span>(<span class="at">method =</span> <span class="st">&quot;Seurat&quot;</span>, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="functions.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setParams</span>(<span class="at">method =</span> <span class="st">&quot;Seurat&quot;</span>, ...)</span></code></pre></div>
 <p><strong>Arguments</strong></p>
 <table>
 <colgroup>
@@ -210,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="merge" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Merge()</h2>
 <p><code>Merge()</code> generates a <code>SingleCellExperiment</code> object that has been batch integrated by the method specified in the <code>params</code> object.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="functions.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Merge</span>(params, data)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="functions.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Merge</span>(params, data)</span></code></pre></div>
 <p><strong>Arguments</strong></p>
 <table>
 <colgroup>

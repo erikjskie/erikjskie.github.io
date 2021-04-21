@@ -146,6 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#processing-data-without-merging-batches"><i class="fa fa-check"></i><b>2.1</b> Processing data without merging batches</a></li>
 <li class="chapter" data-level="2.2" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#merging-with-seurat"><i class="fa fa-check"></i><b>2.2</b> Merging with Seurat</a></li>
+<li class="chapter" data-level="2.3" data-path="merge-example-vignettes.html"><a href="merge-example-vignettes.html#merging-with-bbknn"><i class="fa fa-check"></i><b>2.3</b> Merging with bbknn</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>3</b> functions</a>
 <ul>
@@ -182,19 +183,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="uncorrectedparams" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> UncorrectedParams</h2>
 <p>Class generated from <code>setParams(method = "Uncorrected")</code> for normalizing and scaling data without batch correction.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="classes.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">UncorrectedParams</span>(<span class="at">batch =</span> <span class="st">&quot;batch&quot;</span>,</span>
-<span id="cb13-2"><a href="classes.html#cb13-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">dimreduc_names =</span> <span class="fu">c</span>(<span class="st">&quot;PCA&quot;</span> <span class="ot">=</span> <span class="st">&quot;pca&quot;</span>,</span>
-<span id="cb13-3"><a href="classes.html#cb13-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;UMAP&quot;</span> <span class="ot">=</span> <span class="st">&quot;umap&quot;</span>,</span>
-<span id="cb13-4"><a href="classes.html#cb13-4" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;tSNE&quot;</span> <span class="ot">=</span> <span class="st">&quot;tsne&quot;</span>),</span>
-<span id="cb13-5"><a href="classes.html#cb13-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">npcs =</span> <span class="dv">20</span>, </span>
-<span id="cb13-6"><a href="classes.html#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">norm_data =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-7"><a href="classes.html#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">scaling =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb13-8"><a href="classes.html#cb13-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">regressUMI =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb13-9"><a href="classes.html#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">min_cells =</span> <span class="dv">10</span>,</span>
-<span id="cb13-10"><a href="classes.html#cb13-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">min_genes =</span> <span class="dv">300</span>,</span>
-<span id="cb13-11"><a href="classes.html#cb13-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">norm_method =</span> <span class="st">&quot;LogNormalize&quot;</span>,</span>
-<span id="cb13-12"><a href="classes.html#cb13-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale_factor =</span> <span class="dv">10000</span>,</span>
-<span id="cb13-13"><a href="classes.html#cb13-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">numHVG =</span> <span class="dv">2000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="classes.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">UncorrectedParams</span>(<span class="at">batch =</span> <span class="st">&quot;batch&quot;</span>,</span>
+<span id="cb23-2"><a href="classes.html#cb23-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">dimreduc_names =</span> <span class="fu">c</span>(<span class="st">&quot;PCA&quot;</span> <span class="ot">=</span> <span class="st">&quot;pca&quot;</span>,</span>
+<span id="cb23-3"><a href="classes.html#cb23-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;UMAP&quot;</span> <span class="ot">=</span> <span class="st">&quot;umap&quot;</span>,</span>
+<span id="cb23-4"><a href="classes.html#cb23-4" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;tSNE&quot;</span> <span class="ot">=</span> <span class="st">&quot;tsne&quot;</span>),</span>
+<span id="cb23-5"><a href="classes.html#cb23-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">npcs =</span> <span class="dv">20</span>, </span>
+<span id="cb23-6"><a href="classes.html#cb23-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">norm_data =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-7"><a href="classes.html#cb23-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">scaling =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-8"><a href="classes.html#cb23-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">regressUMI =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb23-9"><a href="classes.html#cb23-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">min_cells =</span> <span class="dv">10</span>,</span>
+<span id="cb23-10"><a href="classes.html#cb23-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">min_genes =</span> <span class="dv">300</span>,</span>
+<span id="cb23-11"><a href="classes.html#cb23-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">norm_method =</span> <span class="st">&quot;LogNormalize&quot;</span>,</span>
+<span id="cb23-12"><a href="classes.html#cb23-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale_factor =</span> <span class="dv">10000</span>,</span>
+<span id="cb23-13"><a href="classes.html#cb23-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">numHVG =</span> <span class="dv">2000</span>)</span></code></pre></div>
 <p><strong>Class Structure</strong></p>
 <table>
 <colgroup>
